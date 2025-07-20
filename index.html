@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Up Mrida - Agricultural Planning Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-green-50">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <div class="flex justify-center mb-6">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9adf2cef-ef57-48f5-8bde-4a74a0d3e2b4.png" alt="Up Mrida logo featuring a green leaf with mathematical symbols inside representing agriculture technology" class="rounded-full border-4 border-green-200" width="30%">
+            </div>
+            <h1 class="text-4xl font-bold text-green-800 mb-2">Up Mrida</h1>
+            <p class="text-xl text-green-600">Agricultural Planning & Optimization Tool</p>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="mb-12 rounded-xl overflow-hidden shadow-lg">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0df3c58f-8491-451a-a041-f8b7b3e90b3a.png" alt="Panoramic agricultural landscape showing fields with various crops, a farmer inspecting plants, and digital overlays showing data visualizations and calculations" class="w-full">
+        </div>
+
+        <!-- Feature Introduction -->
+        <section class="mb-16 grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <div class="text-green-600 text-4xl mb-4">🧮</div>
+                <h3 class="text-xl font-semibold mb-2">Fertilizer Calculator</h3>
+                <p class="text-gray-600">Determine precise fertilizer requirements for any field size with scientific accuracy.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <div class="text-green-600 text-4xl mb-4">🌳</div>
+                <h3 class="text-xl font-semibold mb-2">Tree Estimator</h3>
+                <p class="text-gray-600">Calculate optimal tree planting density and spacing for maximum yield.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <div class="text-green-600 text-4xl mb-4">📈</div>
+                <h3 class="text-xl font-semibold mb-2">Sales Predictor</h3>
+                <p class="text-gray-600">Forecast future boundary field sales based on current trends and historical data.</p>
+            </div>
+        </section>
+
+        <!-- Main Calculator Sections -->
+        <div class="space-y-12">
+            <!-- Fertilizer Calculator -->
+            <section class="calculator-section bg-white p-6 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold text-green-700 mb-6 flex items-center">
+                    <span class="bg-green-100 text-green-800 p-2 rounded-full mr-3">1</span>
+                    Fertilizer Requirement Calculator
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <form id="fertilizer-form">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="crop-type">
+                                    Crop Type
+                                    <span class="tooltip">
+                                        <span class="text-gray-400 ml-1">ℹ️</span>
+                                        <span class="tooltiptext">Select the type of crop you're growing to get specific fertilizer recommendations</span>
+                                    </span>
+                                </label>
+                                <select id="crop-type" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                                    <option value="">Select Crop</option>
+                                    <option value="wheat">Wheat</option>
+                                    <option value="rice">Rice</option>
+                                    <option value="corn">Corn</option>
+                                    <option value="soybean">Soybean</option>
+                                    <option value="cotton">Cotton</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="field-area">
+                                    Field Area (hectares)
+                                    <span class="tooltip">
+                                        <span class="text-gray-400 ml-1">ℹ️</span>
+                                        <span class="tooltiptext">Enter the total area of your field in hectares (1 hectare = 10,000 sq meters)</span>
+                                    </span>
+                                </label>
+                                <input type="number" id="field-area" step="0.01" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="soil-type">
+                                    Soil Type
+                                    <span class="tooltip">
+                                        <span class="text-gray-400 ml-1">ℹ️</span>
+                                        <span class="tooltiptext">Different soil types require different fertilizer compositions</span>
+                                    </span>
+                                </label>
+                                <select id="soil-type" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                                    <option value="">Select Soil Type</option>
+                                    <option value="sandy">Sandy</option>
+                                    <option value="loamy">Loamy</option>
+                                    <option value="clay">Clay</option>
+                                    <option value="silt">Silt</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="current-npk">
+                                    Current NPK Levels
+                                    <span class="tooltip">
+                                        <span class="text-gray-400 ml-1">ℹ️</span>
+                                        <span class="tooltiptext">Current Nitrogen (N), Phosphorus (P), and Potassium (K) levels in your soil (kg/ha)</span>
+                                    </span>
+                                </label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div>
+                                        <label class="block text-sm text-gray-500 mb-1">N</label>
+                                        <input type="number" id="current-n" step="0.1" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"/>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-500 mb-1">P</label>
+                                        <input type="number" id="current-p" step="0.1" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"/>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-500 mb-1">K</label>
+                                        <input type="number" id="current-k" step="0.1" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="target-yield">
+                                    Target Yield (kg/ha)
+                                    <span class="tooltip">
+                                        <span class="text-gray-400 ml-1">ℹ️</span>
+                                        <span class="tooltiptext">Your desired crop yield per hectare - affects fertilizer requirements</span>
+                                    </span>
+                                </label>
+                                <input type="number" id="target-yield" step="0.1" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                            </div>
+                            
+                            <button type="button" onclick="calculateFertilizer()" class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                                Calculate Fertilizer Requirements
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-green-700 mb-4">Fertilizer Recommendations</h3>
+                        <div id="fertilizer-result" class="text-gray-700">
+                            <p class="text-gray-500 italic">Results will appear here after calculation</p>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <h4 class="font-medium text-green-700 mb-2">Explanation</h4>
+                            <p class="text-sm text-gray-600">The fertilizer calculator uses soil test results, crop specific nutrient requirements, and target yields to determine the optimal fertilizer mix for your field. The calculations follow FAO recommended practices.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Tree Estimator -->
+            <section class="calculator-section bg-white p-6 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold text-green-700 mb-6 flex items-center">
+                    <span class="bg-green-100 text-green-800 p-2 rounded-full mr-3">2</span>
+                    Tree Planting Estimator
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <form id="tree-form">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="tree-species">
+                                    Tree Species
+                                    <span class="tooltip">
+                                        <span class="text-gray-400 ml-1">ℹ️</span>
+                                        <span class="tooltiptext">Different tree species require different spacing for optimal growth</span>
+                                    </span>
+                                </label>
+                                <select id="tree-species" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                                    <option value="">Select Tree Species</option>
+                                    <option value="mango">Mango</option>
+                                    <option value="apple">Apple</option>
+                                    <option value="orange">Orange</option>
+                                    <option value="teak">Teak</option>
+                                    <option value="eucalyptus">Eucalyptus</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="planting-area">
+                                    Planting Area (hectares)
+                                    <span class="tooltip">
+                                        <span class="text-gray-400 ml-1">ℹ️</span>
+                                        <span class="tooltiptext">Total area available for tree planting</span>
+                                    </span>
+                                </label>
+                                <input type="number" id="planting-area" step="0.01" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="spacing-type">
+                                    Spacing Type
+                                    <span class="tooltip">
+                                        <span class="text-gray-400 ml-1">ℹ️</span>
+                                        <span class="tooltiptext">Choose between density for timber production or fruit production</span>
+                                    </span>
+                                </label>
+                                <select id="spacing-type" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                                    <option value="">Select Spacing Type</option>
+                                    <option value="timber">Timber Production (Wider spacing)</option>
+                                    <option value="fruit">Fruit Production (Closer spacing)</option>
+                                    <option value="mixed">Mixed Use</option>
+                                    <option value="custom">Custom Spacing</option>
+                                </select>
+                            </div>
+                            
+                            <div id="custom-spacing-container" class="mb-4 hidden">
+                                <label class="block text-gray-700 mb-2">Custom Spacing (meters)</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <label class="block text-sm text-gray-500 mb-1">Between Rows</label>
+                                        <input type="number" id="row-spacing" step="0.1" min="0" value="5" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-500 mb-1">Between Trees</label>
+                                        <input type="number" id="tree-spacing" step="0.1" min="0" value="5" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="button" onclick="calculateTrees()" class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                                Calculate Tree Planting
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-green-700 mb-4">Planting Estimation</h3>
+                        <div id="tree-result" class="text-gray-700">
+                            <p class="text-gray-500 italic">Results will appear here after calculation</p>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <h4 class="font-medium text-green-700 mb-2">Visualization</h4>
+                            <div id="tree-visualization" class="bg-white p-4 rounded border border-green-200">
+                                <p class="text-sm text-gray-500 italic">A planting diagram will appear here after calculation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Sales Predictor -->
+            <section class="calculator-section bg-white p-6 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold text-green-700 mb-6 flex items-center">
+                    <span class="bg-green-100 text-green-800 p-2 rounded-full mr-3">3</span>
+                    Boundary Field Sales Predictor
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <form id="sales-form">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="region">
+                                    Region
+                                    <span class="tooltip">
+                                        <span class="text-gray-400 ml-1">ℹ️</span>
+                                        <span class="tooltiptext">Select the region where your farmland is located</span>
+                                    </span>
+                                </label>
+                                <select id="region" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                                    <option value="">Select Region</option>
+                                    <option value="north">Northern Region</option>
+                                    <option value="south">Southern Region</option>
+                                    <option value="east">Eastern Region</option>
+                                    <option value="west">Western Region</option>
+                                    <option value="central">Central Region</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="field-size">
+                                    Field Size (hectares)
+                                    <span class="tooltip">
+                                        <span class="text-gray-400 ml-1">ℹ️</span>
+                                        <span class="tooltiptext">Size of the agricultural field you're assessing for future sales</span>
+                                    </span>
+                                </label>
+                                <input type="number" id="field-size" step="0.01" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="soil-quality">
+                                    Soil Quality
+                                    <span class="tooltip">
+                                        <span class="text-gray-400 ml-1">ℹ️</span>
+                                        <span class="tooltiptext">Quality of soil affects land value and future sales projections</span>
+                                    </span>
+                                </label>
+                                <select id="soil-quality" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                                    <option value="">Select Soil Quality</option>
+                                    <option value="high">High Quality</option>
+                                    <option value="medium">Medium Quality</option>
+                                    <option value="low">Low Quality</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="time-frame">
+                                    Time Frame (years)
+                                    <span class="tooltip">
+                                        <span class="text-gray-400 ml-1">ℹ️</span>
+                                        <span class="tooltiptext">Projection period for future sales prediction</span>
+                                    </span>
+                                </label>
+                                <input type="number" id="time-frame" min="1" max="20" value="5" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="current-market">
+                                    Current Market Value (per ha)
+                                    <span class="tooltip">
+                                        <span class="text-gray-400 ml-1">ℹ️</span>
+                                        <span class="tooltiptext">Current market value of similar agricultural land in your area</span>
+                                    </span>
+                                </label>
+                                <input type="number" id="current-market" step="0.01" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                            </div>
+                            
+                            <button type="button" onclick="predictSales()" class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                                Predict Future Sales
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-green-700 mb-4">Sales Prediction</h3>
+                        <div id="sales-result" class="text-gray-700">
+                            <p class="text-gray-500 italic">Results will appear here after calculation</p>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <h4 class="font-medium text-green-700 mb-2">Projection Chart</h4>
+                            <canvas id="sales-chart" class="w-full h-64" style="display: none;"></canvas>
+                            <p id="chart-placeholder" class="text-sm text-gray-500 italic p-4 bg-white rounded border border-green-200">A sales projection chart will appear here after calculation</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="mt-16 pt-8 border-t border-gray-200 text-center">
+            <p class="text-gray-600 mb-4">Up Mrida - Advanced Agricultural Planning Tool</p>
+            <p class="text-sm text-gray-500">Calculations are based on scientific agricultural models and should be used as guidelines. Consult with an agricultural expert for precise planning.</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+    <!-- Include Chart.js for sales prediction visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
+
